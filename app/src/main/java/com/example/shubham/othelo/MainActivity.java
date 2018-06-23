@@ -56,7 +56,7 @@ LinearLayout rootlayout;
                 button.setLayoutParams(layoutParams);
 
                 button.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonbg));
-                button.setTextSize(10);
+                button.setTextSize(40);
                 button.setOnClickListener(this);
                 LinearLayout row=rows.get(i);
                 row.addView(button);
@@ -64,10 +64,10 @@ LinearLayout rootlayout;
                 board[i][j]=button;
             }
         }
-        board[3][3].setPlayer(BLACK,board,size);
-        board[3][4].setPlayer(WHITE,board,size);
-        board[4][3].setPlayer(WHITE,board,size);
-        board[4][4].setPlayer(BLACK,board,size);
+        board[3][3].setPlayer(WHITE,board,size);
+        board[3][4].setPlayer(BLACK,board,size);
+        board[4][3].setPlayer(BLACK,board,size);
+        board[4][4].setPlayer(WHITE,board,size);
 
     }
 

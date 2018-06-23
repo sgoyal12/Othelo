@@ -48,10 +48,10 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
 
     private void perform(OButton board[][],int size) {
         int otherPlayer,a,currentPlayer,i,j;
-        i=x;
-        j=y;
+        i=this.x;
+        j=this.y;
         System.out.println(x+"-"+y);
-        int []dir=new int[size];
+        int dir[]=new int[size];
         if(this.player==MainActivity.BLACK){
             otherPlayer=MainActivity.WHITE;
             currentPlayer=MainActivity.BLACK;
@@ -209,6 +209,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                     }
                 }
             }
+            for(int b=0;b<size;b++){
+            System.out.print(dir[b]+" ");
+            }
           for(int b=0;b<size;b++)
           {
               if(dir[b]!=0)
@@ -231,9 +234,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i-k][j-k].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i-k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i-k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i-k][j-k].setAround(currentPlayer,board,size);
                       }
                   }
@@ -243,9 +246,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i-k][j].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i-k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i-k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i-k][j].setAround(currentPlayer,board,size);
                       }
                   }
@@ -255,9 +258,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i-k][j+k].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i-k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i-k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i-k][j+k].setAround(currentPlayer,board,size);
                       }
                   }
@@ -267,9 +270,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i][j+k].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i][j+k].setAround(currentPlayer,board,size);
                       }
                   }
@@ -279,9 +282,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i+k][j+k].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i+k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i+k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i+k][j+k].setAround(currentPlayer,board,size);
                       }
                   }
@@ -291,9 +294,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i+k][j].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i+k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i+k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i+k][j].setAround(currentPlayer,board,size);
                       }
                   }
@@ -303,9 +306,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                       {
                           board[i+k][j-k].player=currentPlayer;
                           if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              board[i+k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
                           else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                              board[i+k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
                           board[i+k][j-k].setAround(currentPlayer,board,size);
                       }
                   }
