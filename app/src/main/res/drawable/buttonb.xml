@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/buttonbg"></item>
+    <item android:drawable="@drawable/black" android:top="@dimen/top" android:bottom="@dimen/top" android:start="@dimen/border" android:end="@dimen/border" ></item>
+</layer-list>
