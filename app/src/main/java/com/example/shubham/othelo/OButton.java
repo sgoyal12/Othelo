@@ -86,37 +86,90 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                   otherPlayer=MainActivity.BLACK;
               }
               if(status!=0) {
-                  for (int k = 1; j-k >=0; k++) {
-                        if(board[i][j-k].isEmpty()||(board[i][j-k].player==otherPlayer&&k==1)) {
-                            a=0;
-                            break;
+                 for(int b=0;b<8;b++) {
+                    for (int k = 1; j - k >= 0; k++) {
+                        if(b==0) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
                         }
-                        else if(board[i][j].player==otherPlayer)
-                        {
-                          a=1;
-                          break;
+                        else if(b==1) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
                         }
-                  }
-                  for (int k = 1; k < size; k++) {
+                        else if(b==2) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
+                        }
+                        else if(b==3) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
+                        }
+                        else if(b==4) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
+                        }
+                        else if(b==5) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
+                        }
+                        else if(b==6) {
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
+                        }
+                        else {
 
-                  }
-                  for (int k = 1; k < size; k++) {
-
-                  }
-                  for (int k = 1; k < size; k++) {
-
-                  }
-                  for (int k = 1; k < size; k++) {
-
-                  }
-                  for (int k = 1; k < size; k++) {
-
-                  }
-                  for (int k = 1; k < size; k++) {
-
-                  }
-                  for (int k = 1; k < size; k++) {
-
+                            if (board[i][j - k].isEmpty() || (board[i][j - k].player == otherPlayer && k == 1)) {
+                                a = 0;
+                                break;
+                            }
+                            else if (board[i][j].player == otherPlayer) {
+                                a = 1;
+                                break;
+                            }
+                        }
+                     }
                   }
               }
             }
