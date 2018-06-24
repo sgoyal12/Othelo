@@ -2,4 +2,6 @@
 <resources>
     <dimen name="border">3dp</dimen>
     <dimen name="top">10dp</dimen>
+    <dimen name="textView">40dp</dimen>
+    <dimen name="textSize">30dp</dimen>
 </resources>

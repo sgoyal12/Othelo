@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,9 +19,11 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 LinearLayout rootlayout;
     ArrayList<LinearLayout> rows;
     public OButton[][] board;
+    TextView tvb,tvw;
     public static  final int size=8;
     public static int currentStatus;
-    public static final int INCOMPLETE=0,BLACK_WON=1,WHITE_WON=2;
+    public static int blackT=0,whiteT=0,validMove=0,validprevious=0;
+    public static final int INCOMPLETE=0,BLACK_WON=1,WHITE_WON=2,DRAW=3;
     public static final int BLACK=0,WHITE=1,NO_PLAYER=2;
     public static int currentPlayer;
 
@@ -28,6 +32,8 @@ LinearLayout rootlayout;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rootlayout=findViewById(R.id.RootLayout);
+        tvb=findViewById(R.id.blackTiles);
+        tvw=findViewById(R.id.whiteTiles);
         setBoard();
     }
 
@@ -36,6 +42,7 @@ LinearLayout rootlayout;
         rows=new ArrayList<>();
         currentStatus=INCOMPLETE;
         currentPlayer=BLACK;
+        blackT=0;whiteT=0;validMove=0;validprevious=0;
         rootlayout.removeAllViews();
         for(int i=0;i<size;i++)
         {
@@ -68,7 +75,20 @@ LinearLayout rootlayout;
         board[3][4].setPlayer(BLACK,board,size);
         board[4][3].setPlayer(BLACK,board,size);
         board[4][4].setPlayer(WHITE,board,size);
+        setNOT();
+    }
 
+    private void setNOT() {
+        if(blackT<10)
+            tvb.setText("0"+blackT);
+        else
+            tvb.setText(""+blackT);
+        if(whiteT<10)
+        {
+            tvw.setText("0"+whiteT);
+        }
+        else
+            tvw.setText(""+whiteT);
     }
 
 
@@ -77,14 +97,14 @@ LinearLayout rootlayout;
         if(currentStatus==INCOMPLETE) {
             OButton button = (OButton) v;
             button.setPlayer(currentPlayer,board,size);
-
-
-            setGameStatus();
+            setNOT();
+            if(validMove==0){
+            setGameStatus();}
             tooglePlayer();
         }
     }
 
-    private void tooglePlayer() {
+    private static void tooglePlayer() {
         if(currentPlayer==BLACK)
             currentPlayer=WHITE;
         else {
@@ -93,7 +113,41 @@ LinearLayout rootlayout;
     }
 
     private void setGameStatus() {
+        if(validMove==0)
+        {
+            if(validprevious==0)
+            {
+                checkWinner();
+            }
+            else
+            {
+                OButton button=new OButton(MainActivity.this);
+                button.checkValidStatus(currentPlayer,board,size);
+                button.setValidStatus(board,size);
+                setGameStatus();
+            }
+        }
+        else
+        {
+            tooglePlayer();
+            Toast.makeText(MainActivity.this,"PASS",Toast.LENGTH_LONG).show();
+        }
 
+    }
+
+    private void checkWinner() {
+        if(blackT>whiteT){
+            currentStatus=BLACK_WON;
+            Toast.makeText(MainActivity.this,"PLAYER ONE WON",Toast.LENGTH_LONG).show();
+        }
+        else if(blackT<whiteT) {
+            currentStatus = WHITE_WON;
+            Toast.makeText(MainActivity.this,"PLAYER TWO WON",Toast.LENGTH_LONG).show();
+        }
+        else {
+            currentStatus=DRAW;
+            Toast.makeText(MainActivity.this,"DRAW",Toast.LENGTH_LONG).show();
+        }
     }
 
 }

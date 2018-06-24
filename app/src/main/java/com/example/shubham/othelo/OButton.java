@@ -31,12 +31,13 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
             setText("");
             setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
             aroundBlackStatus(board,size);
-
+            MainActivity.blackT++;
         }
         else if(player==MainActivity.WHITE){
             setText("");
             setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
             aroundWhiteStatus(board,size);
+            MainActivity.whiteT++;
 
         }
         perform(board,size);
@@ -50,7 +51,6 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
         int otherPlayer,a,currentPlayer,i,j;
         i=this.x;
         j=this.y;
-        System.out.println(x+"-"+y);
         int dir[];
         if(this.player==MainActivity.BLACK){
             otherPlayer=MainActivity.WHITE;
@@ -68,98 +68,150 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
               {
                   if(b==0)
                   {
-                      for(int k=1;board[i][j-k].player!=currentPlayer;k++)
-                      {
-                          board[i][j-k].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i][j-k].setAround(currentPlayer,board,size);
+                      for(int k=1;board[i][j-k].player!=currentPlayer;k++) {
+                         if(j-k>=0)
+                         {
+                             board[i][j - k].player = currentPlayer;
+                             if (currentPlayer == MainActivity.BLACK) {
+                                 MainActivity.blackT++;
+                                 MainActivity.whiteT--;
+                                 board[i][j - k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                             } else if (currentPlayer == MainActivity.WHITE) {
+                                 MainActivity.whiteT++;
+                                 MainActivity.blackT--;
+                                 board[i][j - k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
+                             }
+                             board[i][j - k].setAround(currentPlayer, board, size);
+                         }
                       }
                   }
                   else if(b==1)
                   {
                       for(int k=1;board[i-k][j-k].player!=currentPlayer;k++)
                       {
-                          board[i-k][j-k].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i-k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i-k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i-k][j-k].setAround(currentPlayer,board,size);
+                         if(i-k>=0&&j-k>=0){
+                             board[i-k][j-k].player=currentPlayer;
+                             if (currentPlayer == MainActivity.BLACK) {
+                                 MainActivity.blackT++;
+                                 MainActivity.whiteT--;
+                                 board[i-k][j - k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                             } else if (currentPlayer == MainActivity.WHITE) {
+                                 MainActivity.whiteT++;
+                                 MainActivity.blackT--;
+                                 board[i-k][j - k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                             board[i-k][j-k].setAround(currentPlayer,board,size);
+                         }
                       }
                   }
                   else if(b==2)
                   {
                       for(int k=1;board[i-k][j].player!=currentPlayer;k++)
                       {
-                          board[i-k][j].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i-k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i-k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i-k][j].setAround(currentPlayer,board,size);
+                          if(i-k>=0)
+                          {
+                              board[i-k][j].player=currentPlayer;
+                              if (currentPlayer == MainActivity.BLACK) {
+                                  MainActivity.blackT++;
+                                  MainActivity.whiteT--;
+                                  board[i-k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              } else if (currentPlayer == MainActivity.WHITE) {
+                                  MainActivity.whiteT++;
+                                  MainActivity.blackT--;
+                                  board[i-k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                              board[i-k][j].setAround(currentPlayer,board,size);
+                          }
                       }
                   }
                   else if(b==3)
                   {
                       for(int k=1;board[i-k][j+k].player!=currentPlayer;k++)
                       {
-                          board[i-k][j+k].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i-k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i-k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i-k][j+k].setAround(currentPlayer,board,size);
+                        if(i-k>=0&&j+k<size){
+                            board[i-k][j+k].player=currentPlayer;
+                            if (currentPlayer == MainActivity.BLACK) {
+                                MainActivity.blackT++;
+                                MainActivity.whiteT--;
+                                board[i-k][j +k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                            } else if (currentPlayer == MainActivity.WHITE) {
+                                MainActivity.whiteT++;
+                                MainActivity.blackT--;
+                                board[i-k][j + k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                            board[i-k][j+k].setAround(currentPlayer,board,size);
+                        }
                       }
                   }
                   else if(b==4)
                   {
                       for(int k=1;board[i][j+k].player!=currentPlayer;k++)
                       {
-                          board[i][j+k].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i][j+k].setAround(currentPlayer,board,size);
+                          if(j+k<size){
+                              board[i][j+k].player=currentPlayer;
+                              if (currentPlayer == MainActivity.BLACK) {
+                                  MainActivity.blackT++;
+                                  MainActivity.whiteT--;
+                                  board[i][j + k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              } else if (currentPlayer == MainActivity.WHITE) {
+                                  MainActivity.whiteT++;
+                                  MainActivity.blackT--;
+                                  board[i][j + k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                              board[i][j+k].setAround(currentPlayer,board,size);
+                          }
                       }
                   }
                   else if(b==5)
                   {
                       for(int k=1;board[i+k][j+k].player!=currentPlayer;k++)
                       {
-                          board[i+k][j+k].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i+k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i+k][j+k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i+k][j+k].setAround(currentPlayer,board,size);
+                          if(i+k<size&&j+k<size)
+                          {
+                              board[i+k][j+k].player=currentPlayer;
+                              if (currentPlayer == MainActivity.BLACK) {
+                                  MainActivity.blackT++;
+                                  MainActivity.whiteT--;
+                                  board[i+k][j + k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              } else if (currentPlayer == MainActivity.WHITE) {
+                                  MainActivity.whiteT++;
+                                  MainActivity.blackT--;
+                                  board[i+k][j +k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                              board[i+k][j+k].setAround(currentPlayer,board,size);
+                          }
                       }
                   }
                   else if(b==6)
                   {
                       for(int k=1;board[i+k][j].player!=currentPlayer;k++)
                       {
-                          board[i+k][j].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i+k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i+k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i+k][j].setAround(currentPlayer,board,size);
+                          if(i+k<size){
+                              board[i+k][j].player=currentPlayer;
+                              if (currentPlayer == MainActivity.BLACK) {
+                                  MainActivity.blackT++;
+                                  MainActivity.whiteT--;
+                                  board[i+k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              } else if (currentPlayer == MainActivity.WHITE) {
+                                  MainActivity.whiteT++;
+                                  MainActivity.blackT--;
+                                  board[i+k][j].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                              board[i+k][j].setAround(currentPlayer,board,size);
+                          }
                       }
                   }
                   else if(b==7)
                   {
                       for(int k=1;board[i+k][j-k].player!=currentPlayer;k++)
                       {
-                          board[i+k][j-k].player=currentPlayer;
-                          if(currentPlayer==MainActivity.BLACK)
-                              board[i+k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
-                          else if(currentPlayer==MainActivity.WHITE)
-                              board[i+k][j-k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));
-                          board[i+k][j-k].setAround(currentPlayer,board,size);
+                          if(i+k<size&&j-k>=0)
+                          {
+                              board[i+k][j-k].player=currentPlayer;
+                              if (currentPlayer == MainActivity.BLACK) {
+                                  MainActivity.blackT++;
+                                  MainActivity.whiteT--;
+                                  board[i+k][j - k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonb));
+                              } else if (currentPlayer == MainActivity.WHITE) {
+                                  MainActivity.whiteT++;
+                                  MainActivity.blackT--;
+                                  board[i+k][j - k].setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonw));}
+                              board[i+k][j-k].setAround(currentPlayer,board,size);
+                          }
                       }
                   }
               }
@@ -174,9 +226,10 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
            {
                for (j=this.y-1;j<this.y+2;j++)
                {
-                   if(i>=0&&i<size&&j>=0&&j<size&&board[i][j].isEmpty())
+                   if(i>=0&&i<size&&j>=0&&j<size&&board[i][j].isEmpty()) {
                        board[i][j].blackstatus++;
                        board[i][j].whitestatus--;
+                   }
                }
            }
        }
@@ -187,9 +240,10 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
            {
                for (j=this.y-1;j<this.y+2;j++)
                {
-                   if(i>=0&&i<size&&j>=0&&j<size&&board[i][j].isEmpty())
+                   if(i>=0&&i<size&&j>=0&&j<size&&board[i][j].isEmpty()) {
                        board[i][j].blackstatus--;
-                   board[i][j].whitestatus++;
+                       board[i][j].whitestatus++;
+                   }
                }
            }
        }
@@ -409,8 +463,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
         }
     }
 
-    private void setValidStatus( OButton[][] board, int size) {
-        for(int i=0;i<size;i++)
+    public void setValidStatus( OButton[][] board, int size) {
+     int a=0;
+     for(int i=0;i<size;i++)
         {
             for(int j=0;j<size;j++)
             {
@@ -419,6 +474,7 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                     if(board[i][j].isEmpty())
                     {
                         board[i][j].setText("-");
+                        a++;
                     }
                 }
                 else
@@ -430,6 +486,9 @@ public class OButton extends android.support.v7.widget.AppCompatButton {
                 }
             }
         }
+            MainActivity.validprevious=MainActivity.validMove;
+            MainActivity.validMove=a;
+
     }
     public boolean isEmpty()
     {

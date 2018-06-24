@@ -6,4 +6,6 @@
     <color name="dark">#1cb903</color>
     <color name="light">#76fa6a</color>
     <color name="border">#04adfc</color>
+    <color name="back1">#fcf94f</color>
+    <color name="back2">#faadad</color>
 </resources>
