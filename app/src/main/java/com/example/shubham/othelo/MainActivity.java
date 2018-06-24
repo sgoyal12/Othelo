@@ -18,6 +18,7 @@ LinearLayout rootlayout;
     ArrayList<LinearLayout> rows;
     public OButton[][] board;
     public static  final int size=8;
+    public  static int blackT=2,whiteT=2;
     public static int currentStatus;
     public static final int INCOMPLETE=0,BLACK_WON=1,WHITE_WON=2;
     public static final int BLACK=0,WHITE=1,NO_PLAYER=2;
