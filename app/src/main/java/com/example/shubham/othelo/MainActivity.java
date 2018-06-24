@@ -10,15 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements  View.OnClickListener {
 LinearLayout rootlayout;
     ArrayList<LinearLayout> rows;
+    TextView tvb,tvw;
     public OButton[][] board;
     public static  final int size=8;
-    public  static int blackT=2,whiteT=2;
+    public  static int blackT=0,whiteT=0;
     public static int currentStatus;
     public static final int INCOMPLETE=0,BLACK_WON=1,WHITE_WON=2;
     public static final int BLACK=0,WHITE=1,NO_PLAYER=2;
@@ -29,6 +31,8 @@ LinearLayout rootlayout;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rootlayout=findViewById(R.id.RootLayout);
+        tvb=findViewById(R.id.blackTiles);
+        tvw=findViewById(R.id.whiteTiles);
         setBoard();
     }
 
@@ -37,6 +41,7 @@ LinearLayout rootlayout;
         rows=new ArrayList<>();
         currentStatus=INCOMPLETE;
         currentPlayer=BLACK;
+        blackT=0;whiteT=0;
         rootlayout.removeAllViews();
         for(int i=0;i<size;i++)
         {
@@ -57,7 +62,7 @@ LinearLayout rootlayout;
                 button.setLayoutParams(layoutParams);
 
                 button.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonbg));
-                button.setTextSize(10);
+                button.setTextSize(40);
                 button.setOnClickListener(this);
                 LinearLayout row=rows.get(i);
                 row.addView(button);
@@ -65,11 +70,11 @@ LinearLayout rootlayout;
                 board[i][j]=button;
             }
         }
-        board[3][3].setPlayer(BLACK,board,size);
-        board[3][4].setPlayer(WHITE,board,size);
-        board[4][3].setPlayer(WHITE,board,size);
-        board[4][4].setPlayer(BLACK,board,size);
-
+        board[3][3].setPlayer(WHITE,board,size);
+        board[3][4].setPlayer(BLACK,board,size);
+        board[4][3].setPlayer(BLACK,board,size);
+        board[4][4].setPlayer(WHITE,board,size);
+        setNOT();
     }
 
 
@@ -78,11 +83,24 @@ LinearLayout rootlayout;
         if(currentStatus==INCOMPLETE) {
             OButton button = (OButton) v;
             button.setPlayer(currentPlayer,board,size);
-
-
+            setNOT();
             setGameStatus();
             tooglePlayer();
         }
+    }
+
+    private void setNOT() {
+        if(blackT<10)
+            tvb.setText("0"+blackT);
+        else{
+            tvb.setText(blackT);
+        }
+        if(whiteT<10)
+            tvw.setText("0"+whiteT);
+        else{
+            tvw.setText(whiteT);
+        }
+
     }
 
     private void tooglePlayer() {

@@ -5,5 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="dark">#1cb903</color>
     <color name="light">#76fa6a</color>
+ <color name="back">#fdcfc2</color>
+    <color name="back2">#eff531</color>
     <color name="border">#04adfc</color>
 </resources>
